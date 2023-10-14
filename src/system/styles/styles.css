@@ -1,0 +1,23 @@
+.contentInCard {
+  flex: 1 1 200px;
+  margin: auto;
+}
+
+.imageInCard {
+  flex: 1 1 120px;
+  aspect-ratio: 1 / 1;
+}
+
+.cardD {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardImage {
+  max-width: 150px;
+}
+
+.cardValue {
+  font-size: 40px;
+}
+

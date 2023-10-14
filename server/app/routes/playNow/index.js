@@ -1,0 +1,16 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _express = require("express");
+var _PlayNowController = _interopRequireDefault(require("../../controllers/PlayNowController"));
+var _auth = _interopRequireDefault(require("../../middlewares/auth.middleware"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const playNowRouter = (0, _express.Router)();
+playNowRouter.get('/:betId', _auth.default, _PlayNowController.default.play);
+playNowRouter.get('/start/:gameId', _auth.default, _PlayNowController.default.startGame);
+var _default = playNowRouter;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJwbGF5Tm93Um91dGVyIiwiUm91dGVyIiwiZ2V0IiwiYXV0aE1pZGRsZXdhcmUiLCJQbGF5bm93Q29udHJvbGxlciIsInBsYXkiLCJzdGFydEdhbWUiXSwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9zcmMvYXBwL3JvdXRlcy9wbGF5Tm93L2luZGV4LnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFJvdXRlciB9IGZyb20gJ2V4cHJlc3MnO1xyXG5pbXBvcnQgUGxheW5vd0NvbnRyb2xsZXIgZnJvbSAnLi4vLi4vY29udHJvbGxlcnMvUGxheU5vd0NvbnRyb2xsZXInO1xyXG5pbXBvcnQgYXV0aE1pZGRsZXdhcmUgZnJvbSAnLi4vLi4vbWlkZGxld2FyZXMvYXV0aC5taWRkbGV3YXJlJztcclxuXHJcbmNvbnN0IHBsYXlOb3dSb3V0ZXIgPSBSb3V0ZXIoKTtcclxuXHJcbnBsYXlOb3dSb3V0ZXIuZ2V0KCcvOmJldElkJywgYXV0aE1pZGRsZXdhcmUsIFBsYXlub3dDb250cm9sbGVyLnBsYXkpO1xyXG5wbGF5Tm93Um91dGVyLmdldChcclxuICAnL3N0YXJ0LzpnYW1lSWQnLFxyXG4gIGF1dGhNaWRkbGV3YXJlLFxyXG4gIFBsYXlub3dDb250cm9sbGVyLnN0YXJ0R2FtZSxcclxuKTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IHBsYXlOb3dSb3V0ZXI7XHJcbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7O0FBQUE7QUFDQTtBQUNBO0FBQStEO0FBRS9ELE1BQU1BLGFBQWEsR0FBRyxJQUFBQyxlQUFNLEdBQUU7QUFFOUJELGFBQWEsQ0FBQ0UsR0FBRyxDQUFDLFNBQVMsRUFBRUMsYUFBYyxFQUFFQywwQkFBaUIsQ0FBQ0MsSUFBSSxDQUFDO0FBQ3BFTCxhQUFhLENBQUNFLEdBQUcsQ0FDZixnQkFBZ0IsRUFDaEJDLGFBQWMsRUFDZEMsMEJBQWlCLENBQUNFLFNBQVMsQ0FDNUI7QUFBQyxlQUVhTixhQUFhO0FBQUEifQ==

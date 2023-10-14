@@ -1,0 +1,23 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _express = require("express");
+var _auth = _interopRequireWildcard(require("../../middlewares/auth.middleware"));
+var _GameController = _interopRequireDefault(require("../../controllers/GameController"));
+var _upload = _interopRequireDefault(require("../../utils/upload"));
+var _games = _interopRequireDefault(require("../../validations/games"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
+function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+const gamesRouter = (0, _express.Router)();
+gamesRouter.get('/', _GameController.default.getAll);
+gamesRouter.post('/', _auth.default, _auth.allowedRoles, _upload.default.array('images', 4), _games.default.create, _GameController.default.create);
+gamesRouter.get('/:id', _GameController.default.getOne);
+gamesRouter.put('/:id', _auth.default, _auth.allowedRoles, _upload.default.array('images', 4), _GameController.default.updateItem);
+gamesRouter.delete('/:id', _auth.default, _auth.allowedRoles, _GameController.default.delete);
+var _default = gamesRouter;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJnYW1lc1JvdXRlciIsIlJvdXRlciIsImdldCIsIkdhbWVDb250cm9sbGVyIiwiZ2V0QWxsIiwicG9zdCIsImF1dGhNaWRkbGV3YXJlIiwiYWxsb3dlZFJvbGVzIiwidXBsb2FkIiwiYXJyYXkiLCJHYW1lVmFsaWRhdGUiLCJjcmVhdGUiLCJnZXRPbmUiLCJwdXQiLCJ1cGRhdGVJdGVtIiwiZGVsZXRlIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vc3JjL2FwcC9yb3V0ZXMvZ2FtZXMvaW5kZXgudHMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUm91dGVyIH0gZnJvbSAnZXhwcmVzcyc7XHJcbmltcG9ydCBhdXRoTWlkZGxld2FyZSwgeyBhbGxvd2VkUm9sZXMgfSBmcm9tICcuLi8uLi9taWRkbGV3YXJlcy9hdXRoLm1pZGRsZXdhcmUnO1xyXG5pbXBvcnQgR2FtZUNvbnRyb2xsZXIgZnJvbSAnLi4vLi4vY29udHJvbGxlcnMvR2FtZUNvbnRyb2xsZXInO1xyXG5pbXBvcnQgdXBsb2FkIGZyb20gJy4uLy4uL3V0aWxzL3VwbG9hZCc7XHJcbmltcG9ydCBHYW1lVmFsaWRhdGUgZnJvbSAnLi4vLi4vdmFsaWRhdGlvbnMvZ2FtZXMnO1xyXG5cclxuY29uc3QgZ2FtZXNSb3V0ZXIgPSBSb3V0ZXIoKTtcclxuXHJcbmdhbWVzUm91dGVyLmdldCgnLycsIEdhbWVDb250cm9sbGVyLmdldEFsbCk7XHJcbmdhbWVzUm91dGVyLnBvc3QoJy8nLCAgYXV0aE1pZGRsZXdhcmUsIGFsbG93ZWRSb2xlcywgdXBsb2FkLmFycmF5KCdpbWFnZXMnLCA0KSwgR2FtZVZhbGlkYXRlLmNyZWF0ZSwgR2FtZUNvbnRyb2xsZXIuY3JlYXRlKTtcclxuZ2FtZXNSb3V0ZXIuZ2V0KCcvOmlkJywgR2FtZUNvbnRyb2xsZXIuZ2V0T25lKTtcclxuZ2FtZXNSb3V0ZXIucHV0KCcvOmlkJywgYXV0aE1pZGRsZXdhcmUsIGFsbG93ZWRSb2xlcywgdXBsb2FkLmFycmF5KCdpbWFnZXMnLCA0KSwgR2FtZUNvbnRyb2xsZXIudXBkYXRlSXRlbSk7XHJcbmdhbWVzUm91dGVyLmRlbGV0ZSgnLzppZCcsIGF1dGhNaWRkbGV3YXJlLCBhbGxvd2VkUm9sZXMsIEdhbWVDb250cm9sbGVyLmRlbGV0ZSk7XHJcblxyXG5leHBvcnQgZGVmYXVsdCBnYW1lc1JvdXRlcjtcclxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQW1EO0FBQUE7QUFBQTtBQUVuRCxNQUFNQSxXQUFXLEdBQUcsSUFBQUMsZUFBTSxHQUFFO0FBRTVCRCxXQUFXLENBQUNFLEdBQUcsQ0FBQyxHQUFHLEVBQUVDLHVCQUFjLENBQUNDLE1BQU0sQ0FBQztBQUMzQ0osV0FBVyxDQUFDSyxJQUFJLENBQUMsR0FBRyxFQUFHQyxhQUFjLEVBQUVDLGtCQUFZLEVBQUVDLGVBQU0sQ0FBQ0MsS0FBSyxDQUFDLFFBQVEsRUFBRSxDQUFDLENBQUMsRUFBRUMsY0FBWSxDQUFDQyxNQUFNLEVBQUVSLHVCQUFjLENBQUNRLE1BQU0sQ0FBQztBQUMzSFgsV0FBVyxDQUFDRSxHQUFHLENBQUMsTUFBTSxFQUFFQyx1QkFBYyxDQUFDUyxNQUFNLENBQUM7QUFDOUNaLFdBQVcsQ0FBQ2EsR0FBRyxDQUFDLE1BQU0sRUFBRVAsYUFBYyxFQUFFQyxrQkFBWSxFQUFFQyxlQUFNLENBQUNDLEtBQUssQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDLEVBQUVOLHVCQUFjLENBQUNXLFVBQVUsQ0FBQztBQUMzR2QsV0FBVyxDQUFDZSxNQUFNLENBQUMsTUFBTSxFQUFFVCxhQUFjLEVBQUVDLGtCQUFZLEVBQUVKLHVCQUFjLENBQUNZLE1BQU0sQ0FBQztBQUFDLGVBRWpFZixXQUFXO0FBQUEifQ==

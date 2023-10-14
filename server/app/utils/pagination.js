@@ -1,0 +1,19 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.paginate = void 0;
+const paginate = (count, pageLimit = 10, currentPage = 1) => {
+  let limit = pageLimit || 10;
+  limit = Math.abs(limit);
+  let page = currentPage || 1;
+  page = Math.abs(page);
+  const pages = Math.ceil(count / limit);
+  return {
+    page,
+    pages
+  };
+};
+exports.paginate = paginate;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJwYWdpbmF0ZSIsImNvdW50IiwicGFnZUxpbWl0IiwiY3VycmVudFBhZ2UiLCJsaW1pdCIsIk1hdGgiLCJhYnMiLCJwYWdlIiwicGFnZXMiLCJjZWlsIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL2FwcC91dGlscy9wYWdpbmF0aW9uLnRzIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjb25zdCBwYWdpbmF0ZSA9IChcclxuICBjb3VudDogbnVtYmVyLFxyXG4gIHBhZ2VMaW1pdCA9IDEwLFxyXG4gIGN1cnJlbnRQYWdlID0gMSxcclxuKSA9PiB7XHJcbiAgbGV0IGxpbWl0ID0gcGFnZUxpbWl0IHx8IDEwO1xyXG4gIGxpbWl0ID0gTWF0aC5hYnMobGltaXQpO1xyXG4gIGxldCBwYWdlID0gY3VycmVudFBhZ2UgfHwgMTtcclxuICBwYWdlID0gTWF0aC5hYnMocGFnZSk7XHJcbiAgY29uc3QgcGFnZXMgPSBNYXRoLmNlaWwoY291bnQgLyBsaW1pdCk7XHJcbiAgcmV0dXJuIHsgcGFnZSwgcGFnZXMgfTtcclxufTtcclxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBTyxNQUFNQSxRQUFRLEdBQUcsQ0FDdEJDLEtBQWEsRUFDYkMsU0FBUyxHQUFHLEVBQUUsRUFDZEMsV0FBVyxHQUFHLENBQUMsS0FDWjtFQUNILElBQUlDLEtBQUssR0FBR0YsU0FBUyxJQUFJLEVBQUU7RUFDM0JFLEtBQUssR0FBR0MsSUFBSSxDQUFDQyxHQUFHLENBQUNGLEtBQUssQ0FBQztFQUN2QixJQUFJRyxJQUFJLEdBQUdKLFdBQVcsSUFBSSxDQUFDO0VBQzNCSSxJQUFJLEdBQUdGLElBQUksQ0FBQ0MsR0FBRyxDQUFDQyxJQUFJLENBQUM7RUFDckIsTUFBTUMsS0FBSyxHQUFHSCxJQUFJLENBQUNJLElBQUksQ0FBQ1IsS0FBSyxHQUFHRyxLQUFLLENBQUM7RUFDdEMsT0FBTztJQUFFRyxJQUFJO0lBQUVDO0VBQU0sQ0FBQztBQUN4QixDQUFDO0FBQUMifQ==

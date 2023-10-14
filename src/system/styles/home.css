@@ -1,0 +1,83 @@
+.balanceP {
+  padding-top: 6px;
+  color: white;
+  font-size: 20px;
+}
+
+.balance {
+  margin-top: 40px;
+  color: white;
+}
+
+.moneyCard {
+  transition: box-shadow .25s ease-in;
+  border-radius: 4px;
+  height: 199px;
+  min-width: 50px;
+}
+
+.withdrawBtn:hover {
+  background-color: purple;
+  color: white;
+  animation: pulsate 1s ease-in-out;
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 25px #5ddcff;
+  }
+}
+.statusBirge {
+  font-size: 20px;
+}
+
+.historyContailer {
+  margin-top: 40px;
+}
+
+.idCell {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  padding: -1px;
+}
+
+.idCellText {
+  font-size: 14px;
+  color: #252733;
+}
+
+.withdrawContainer {
+  background: url("../images/background.svg") no-repeat;
+  background-size: cover;
+}
+
+.AccountContainer {
+  background: url("../images/background-1.svg") no-repeat;
+  background-size: cover;
+}
+
+@media (min-width:768px) {
+  .imageBet {
+    display: block;
+  }
+}
+
+@media (min-width:768px) {
+  .withdrawContainer {
+    min-height: 900px;
+  }
+}
+
+@media (max-width:767.9px) {
+  .imageBet {
+    display: none;
+  }
+}
+
+@media (max-width:767.9px) {
+  .withdrawContainer {
+    min-height: 100%;
+  }
+}
+

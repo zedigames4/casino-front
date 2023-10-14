@@ -1,0 +1,25 @@
+const endpoints = {
+  LOGIN: '/api/v1/auth/login',
+  SIGNUP: '/api/v1/auth/signup',
+  LOGOUT: '/api/v1/auth/logout',
+  PROFILE: '/api/v1/profile/me',
+  REFERRAL_CODE: '/api/v1/profile/me/referral-code',
+  FORGET_PASSPORT: '/api/v1/auth/forget-password',
+  ADDING_SUBSCRIBER: '/api/v1/subscribers',
+  RESET_PASSWORD: '/api/v1/auth/reset-password',
+  GAMES: '/api/v1/games',
+  USERS: '/api/v1/users',
+  BIGGEST_WINNER_OLD: '/api/v1/bets/public/all?sort=paid&status=WIN&limit=10',
+  BIGGEST_WINNER: '/api/v1/winners/biggest?isEncrypted=0',
+  WALLET: '/api/v1/profile/me/wallet',
+  TRANSACTION: '/api/v1/transactions',
+  BETS: '/api/v1/bets',
+  TRANSFER_OLTRANZ: '/api/v1/pay/oltranz',
+  WITHDRAW_REQUESTS: '/api/v1/withdrawrequests',
+  TRANSFER: '/api/v1/transfers',
+  INCOME_EXPENSES: '/api/v1/statistics/income-expenses',
+  CHAT: '/api/v1/statistics/chart',
+  LATEST_WINNER: '/api/v1/winners/latest',
+};
+
+export default endpoints;

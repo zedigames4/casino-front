@@ -1,0 +1,24 @@
+declare const Keys: {
+    PORT: number;
+    NODE_ENV: string;
+    API_VERSION: string;
+    MONGO_DB_URL: string;
+    SECRET_KEY: string;
+    TOKEN_EXPIRES_IN: string;
+    HOST: string;
+    FRONT_END_URL: string;
+    TRANSPORTER_SERVICE: string;
+    SERVICE_USERNAME: string;
+    SERVICE_PASSWORD: string;
+    TRANSPORTER_PORT: string | number;
+    MTN_MOMO_API: string;
+    MTN_AUTHORIZATION_KEY: string;
+    MTN_SUBSCRIPTION_KEY: string;
+    OLTRANZ_MERCHANT_ID: string;
+    OLTRANZ_API: string;
+    OLTRANZ_USERNAME: string;
+    OLTRANZ_PASSWORD: string;
+    OLTRANZ_ACCESS_KEY: string;
+    ADMIN_PASSWORD: string;
+};
+export default Keys;

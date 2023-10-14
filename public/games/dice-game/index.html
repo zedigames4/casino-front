@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dice Game</title>
+
+        <meta name="Title" content="Dice Game" />
+        <meta name="description" content="Dice Game is a HTML5 game where you have three dice that will roll to determine if you will win or lose the bet you have placed.">
+		<meta name="keywords" content="casino, gamble, dice, slot, poker, chips, board, win, loss, big, small, chinese">
+
+        <!-- for Facebook -->
+        <meta property="og:title" content="Dice Game"/>
+        <meta property="og:site_name" content="Dice Game"/>
+        <meta property="og:image" content="http://demonisblack.com/code/2016/dicegame/game/share.jpg" />
+        <meta property="og:url" content="http://demonisblack.com/code/2016/dicegame/game/" />
+        <meta property="og:description" content="Dice Game is a HTML5 game where you have three dice that will roll to determine if you will win or lose the bet you have placed.">
+
+        <!-- for Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Dice Game" />
+        <meta name="twitter:description" content="Dice Game is a HTML5 game where you have three dice that will roll to determine if you will win or lose the bet you have placed." />
+        <meta name="twitter:image" content="http://demonisblack.com/code/2016/dicegame/game/share.jpg" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.css" integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<script>
+        if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+            var msViewportStyle = document.createElement("style");
+            msViewportStyle.appendChild(
+                document.createTextNode(
+                    "@-ms-viewport{width:device-width}"
+                )
+            );
+            document.getElementsByTagName("head")[0].
+                appendChild(msViewportStyle);
+        }
+        </script>
+
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+        <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href='../dev/assets/css/popupButtons.css'>
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    </head>
+    <body>
+    <main class="page-content">
+        <!-- PERCENT LOADER START-->
+        <div id="mainLoader">0</div>
+        <!-- PERCENT LOADER END-->
+
+        <!-- CONTENT START-->
+        <div id="mainHolder">
+
+            <!-- BROWSER NOT SUPPORT START-->
+            <div id="notSupportHolder">
+                <div class="notSupport">YOUR BROWSER ISN'T SUPPORTED.<br/>PLEASE UPDATE YOUR BROWSER IN ORDER TO RUN THE GAME</div>
+            </div>
+            <!-- BROWSER NOT SUPPORT END-->
+
+            <!-- ROTATE INSTRUCTION START-->
+            <div id="rotateHolder">
+                <div class="mobileRotate">
+                    <div class="rotateImg"><img src="assets/rotate.png" /></div>
+                    <div class="rotateDesc">Rotate your device <br/>to landscape</div>
+                </div>
+            </div>
+            <!-- ROTATE INSTRUCTION END-->
+
+            <!-- CANVAS START-->
+            <div id="canvasHolder">
+                <canvas id="gameCanvas" width="1024" height="768"></canvas>
+            </div>
+            <!-- CANVAS END-->
+
+        </div>
+        <!-- CONTENT END-->
+    </main>
+    <div id="background_div_id" onclick="toggleModal()" class="background">
+    </div>
+    <div class="modal">
+        <div class="relative w-full h-full max-w-md md:h-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button onclick="toggleModal()" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="crypto-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <!-- Modal header -->
+                <div class="px-6 py-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-base font-semibold text-gray-900 lg:text-xl dark:text-white">
+                        Navigate
+                    </h3>
+                </div>
+                <!-- Modal body -->
+                <div class="p-6">
+                    <ul class="my-4 space-y-3">
+                        <li id='dashboardBtn'>
+                            <a href='#'  class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                <span class="material-icons text-primary">grid_view</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Dashboard</span>
+                            </a>
+                        </li>
+                        <li id='walletBtn'>
+                            <a href='#'  class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                <span class="material-icons text-primary">savings</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">Wallet</span>
+                            </a>
+                        </li>
+                        <li id='topupBtn'>
+                            <a href='#'  class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                <span class="material-icons">attach_money</span>
+                                <span class="flex-1 ml-3 whitespace-nowrap">top up</span>
+                            </a>
+                        </li>
+                        <li id='logoutBtn'>
+                            <a href='#' class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
+                                <span class="material-icons">logout</span>
+                                <span id='logoutTxt' class="flex-1 ml-3 whitespace-nowrap">logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div>
+                        <a href="/help" class="inline-flex items-center text-xs font-normal text-gray-500 hover:underline dark:text-gray-400">
+                            <svg class="w-3 h-3 mr-2" aria-hidden="true" focusable="false" data-prefix="far" data-icon="question-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"></path></svg>
+                            Do you want any help?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--    &lt;!&ndash; Modal toggle &ndash;&gt;-->
+<!--    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">-->
+<!--        Toggle modal-->
+<!--    </button>-->
+
+    <!-- Main modal -->
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 hidden bg-primary/50 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+        <div class="relative w-full h-full max-w-md md:h-auto mx-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button id="closeTopupModel" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Your balance in low. You need to top up!</h3>
+                    <form class="space-y-6" id='topUpForm'>
+                        <div>
+                            <label for="telephoneNumber" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                            <input type="tel" name="telephoneNumber" id="telephoneNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="07...">
+                            <p id='telephoneNumberError' class="mt-1 text-red-500 max-w-sm"></p>
+                        </div>
+                        <div>
+                            <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Amount</label>
+                            <input type="number" name="amount" id="amount" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            <p id='amountError' class="mt-1 text-red-500 max-w-sm"></p>
+                        </div>
+                        <button id='submit' type="submit" class="w-full text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:bg-primary/20">Top up</button>
+                        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                            You can go to <a href="/wallet" class="text-blue-700 hover:underline dark:text-blue-500">Wallet</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- payment-pending model -->
+    <div id="payment-pending-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 hidden bg-primary/50 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+        <div class="relative w-full h-full max-w-md md:h-auto mx-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button id="close-payment-pending-modal" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Payment status </h3>
+                    <div class="space-y-6">
+                        <!-- real content -->
+                        <div class="flex flex-col gap-2">
+                            <div class="flex gap-4 items-center">
+                                <h2>Status: </h2>
+                                <p>PENDING</p>
+                                <div role="status">
+                                    <svg
+                                      aria-hidden="true"
+                                      class="w-5 h-5 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                                      viewBox="0 0 100 101"
+                                      fill="none"
+                                      xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path
+                                          d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                                          fill="currentColor"
+                                        />
+                                        <path
+                                          d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                                          fill="currentFill"
+                                        />
+                                    </svg>
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+
+                            <p>Call *182*7*1# to complete transaction </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- payment-pending model -->
+    <div id="payment-error-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 hidden bg-primary/50 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+        <div class="relative w-full h-full max-w-md md:h-auto mx-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button id="close-payment-error-modal" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Payment status </h3>
+                    <div class="space-y-6">
+                        <!-- real content -->
+                        <div class="bg-white p-6  md:mx-auto flex flex-col items-center gap-2">
+                              <span class="material-symbols-outlined text-9xl text-red-400">
+                                error
+                              </span>
+                            <div class="text-center">
+                                <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">
+                                    Payment FAIL!
+                                </h3>
+                                <p class="text-gray-600 my-2">You can try to top up again!.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="payment-success-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 w-full p-4 hidden bg-primary/50 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+        <div class="relative w-full h-full max-w-md md:h-auto mx-auto">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button id="close-success-error-modal" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="authentication-modal">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="px-6 py-6 lg:px-8">
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">Payment status </h3>
+                    <div class="space-y-6">
+                        <!-- real content -->
+                        <div class="bg-white p-6  md:mx-auto">
+                            <svg
+                              viewBox="0 0 24 24"
+                              class="text-green-600 w-16 h-16 mx-auto my-6"
+                            >
+                                <path
+                                  fill="currentColor"
+                                  d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                                />
+                            </svg>
+                            <div class="text-center">
+                                <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">
+                                    Payment Done!
+                                </h3>
+                                <p class="text-gray-600 my-2">
+                                    Thank you for completing your secure online payment.
+                                </p>
+                                <p> Have a great day! </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+        const toggleModal = () => document.body.classList.toggle("open")
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': '#00003E',
+                        dark: '#00003E',
+                        primary: '#00003E',
+                        'brand-bold': '#4E00CE',
+                        'brand-blue-light': '#270B71',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.5/axios.min.js" integrity="sha512-JEXkqJItqNp0+qvX53ETuwTLoz/r1Tn5yTRnZWWz0ghMKM2WFCEYLdQnsdcYnryMNANMAnxNcBa/dN7wQtESdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/secure-ls@1.2.6/dist/secure-ls.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery.min.js">')</script>
+        <script src="../dev/src/system/constants.js"></script>
+
+
+
+        <script src="js/vendor/detectmobilebrowser.js"></script>
+        <script src="js/vendor/createjs.min.js"></script>
+        <script src="js/vendor/TweenMax.min.js"></script>
+
+        <script src="js/plugins.js"></script>
+        <script src="js/sound.js"></script>
+        <script src="js/canvas.js"></script>
+        <script src="js/game.js"></script>
+        <script src="js/mobile.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/loader.js"></script>
+        <script src="js/init.js"></script>
+        <script src="../dev/src/system/system.js"></script>
+    <script src='../dev/src/navModel.js' type='module'></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-86567323-39"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'UA-424386-49');
+        </script>
+    </body>
+</html>

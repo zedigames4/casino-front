@@ -1,0 +1,46 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _mongoose = _interopRequireDefault(require("mongoose"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+const WithdrawRequestSchema = new _mongoose.default.Schema({
+  requester: {
+    type: _mongoose.default.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  adminWallet: {
+    type: _mongoose.default.Types.ObjectId,
+    ref: 'Wallet'
+  },
+  receiverPhoneNumber: {
+    type: String
+  },
+  approvedBy: {
+    type: _mongoose.default.Types.ObjectId,
+    ref: 'User',
+    required: false
+  },
+  status: {
+    type: String,
+    enum: ['APPROVED', 'PENDING', 'REJECTED', 'FAILED'],
+    default: 'PENDING'
+  },
+  amount: {
+    type: Number,
+    required: true
+  },
+  currency: {
+    type: String,
+    enum: ['RWF'],
+    default: 'RWF'
+  }
+});
+WithdrawRequestSchema.set('timestamps', true);
+const WithdrawRequest = _mongoose.default.model('WithdrawRequest', WithdrawRequestSchema);
+var _default = WithdrawRequest;
+exports.default = _default;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6WyJXaXRoZHJhd1JlcXVlc3RTY2hlbWEiLCJtb25nb29zZSIsIlNjaGVtYSIsInJlcXVlc3RlciIsInR5cGUiLCJUeXBlcyIsIk9iamVjdElkIiwicmVmIiwicmVxdWlyZWQiLCJhZG1pbldhbGxldCIsInJlY2VpdmVyUGhvbmVOdW1iZXIiLCJTdHJpbmciLCJhcHByb3ZlZEJ5Iiwic3RhdHVzIiwiZW51bSIsImRlZmF1bHQiLCJhbW91bnQiLCJOdW1iZXIiLCJjdXJyZW5jeSIsInNldCIsIldpdGhkcmF3UmVxdWVzdCIsIm1vZGVsIl0sInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL2FwcC9tb2RlbHMvV2l0aGRyYXdSZXF1ZXN0LnRzIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBtb25nb29zZSBmcm9tICdtb25nb29zZSc7XHJcblxyXG5jb25zdCBXaXRoZHJhd1JlcXVlc3RTY2hlbWEgPSBuZXcgbW9uZ29vc2UuU2NoZW1hKHtcclxuICByZXF1ZXN0ZXI6IHtcclxuICAgIHR5cGU6IG1vbmdvb3NlLlR5cGVzLk9iamVjdElkLFxyXG4gICAgcmVmOiAnVXNlcicsXHJcbiAgICByZXF1aXJlZDogdHJ1ZSxcclxuICB9LFxyXG4gIGFkbWluV2FsbGV0OiB7XHJcbiAgICB0eXBlOiBtb25nb29zZS5UeXBlcy5PYmplY3RJZCxcclxuICAgIHJlZjogJ1dhbGxldCcsXHJcbiAgfSxcclxuICByZWNlaXZlclBob25lTnVtYmVyOiB7XHJcbiAgICB0eXBlOiBTdHJpbmcsXHJcbiAgfSxcclxuICBhcHByb3ZlZEJ5OiB7XHJcbiAgICB0eXBlOiBtb25nb29zZS5UeXBlcy5PYmplY3RJZCxcclxuICAgIHJlZjogJ1VzZXInLFxyXG4gICAgcmVxdWlyZWQ6IGZhbHNlLFxyXG4gIH0sXHJcbiAgc3RhdHVzOiB7XHJcbiAgICB0eXBlOiBTdHJpbmcsXHJcbiAgICBlbnVtOiBbJ0FQUFJPVkVEJywgJ1BFTkRJTkcnLCAnUkVKRUNURUQnLCAnRkFJTEVEJ10sXHJcbiAgICBkZWZhdWx0OiAnUEVORElORycsXHJcbiAgfSxcclxuICBhbW91bnQ6IHtcclxuICAgIHR5cGU6IE51bWJlcixcclxuICAgIHJlcXVpcmVkOiB0cnVlLFxyXG4gIH0sXHJcbiAgY3VycmVuY3k6IHtcclxuICAgIHR5cGU6IFN0cmluZyxcclxuICAgIGVudW06IFsnUldGJ10sXHJcbiAgICBkZWZhdWx0OiAnUldGJyxcclxuICB9LFxyXG59KTtcclxuXHJcbldpdGhkcmF3UmVxdWVzdFNjaGVtYS5zZXQoJ3RpbWVzdGFtcHMnLCB0cnVlKTtcclxuXHJcbmNvbnN0IFdpdGhkcmF3UmVxdWVzdCA9IG1vbmdvb3NlLm1vZGVsKFxyXG4gICdXaXRoZHJhd1JlcXVlc3QnLFxyXG4gIFdpdGhkcmF3UmVxdWVzdFNjaGVtYSxcclxuKTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IFdpdGhkcmF3UmVxdWVzdDtcclxuIl0sIm1hcHBpbmdzIjoiOzs7Ozs7QUFBQTtBQUFnQztBQUVoQyxNQUFNQSxxQkFBcUIsR0FBRyxJQUFJQyxpQkFBUSxDQUFDQyxNQUFNLENBQUM7RUFDaERDLFNBQVMsRUFBRTtJQUNUQyxJQUFJLEVBQUVILGlCQUFRLENBQUNJLEtBQUssQ0FBQ0MsUUFBUTtJQUM3QkMsR0FBRyxFQUFFLE1BQU07SUFDWEMsUUFBUSxFQUFFO0VBQ1osQ0FBQztFQUNEQyxXQUFXLEVBQUU7SUFDWEwsSUFBSSxFQUFFSCxpQkFBUSxDQUFDSSxLQUFLLENBQUNDLFFBQVE7SUFDN0JDLEdBQUcsRUFBRTtFQUNQLENBQUM7RUFDREcsbUJBQW1CLEVBQUU7SUFDbkJOLElBQUksRUFBRU87RUFDUixDQUFDO0VBQ0RDLFVBQVUsRUFBRTtJQUNWUixJQUFJLEVBQUVILGlCQUFRLENBQUNJLEtBQUssQ0FBQ0MsUUFBUTtJQUM3QkMsR0FBRyxFQUFFLE1BQU07SUFDWEMsUUFBUSxFQUFFO0VBQ1osQ0FBQztFQUNESyxNQUFNLEVBQUU7SUFDTlQsSUFBSSxFQUFFTyxNQUFNO0lBQ1pHLElBQUksRUFBRSxDQUFDLFVBQVUsRUFBRSxTQUFTLEVBQUUsVUFBVSxFQUFFLFFBQVEsQ0FBQztJQUNuREMsT0FBTyxFQUFFO0VBQ1gsQ0FBQztFQUNEQyxNQUFNLEVBQUU7SUFDTlosSUFBSSxFQUFFYSxNQUFNO0lBQ1pULFFBQVEsRUFBRTtFQUNaLENBQUM7RUFDRFUsUUFBUSxFQUFFO0lBQ1JkLElBQUksRUFBRU8sTUFBTTtJQUNaRyxJQUFJLEVBQUUsQ0FBQyxLQUFLLENBQUM7SUFDYkMsT0FBTyxFQUFFO0VBQ1g7QUFDRixDQUFDLENBQUM7QUFFRmYscUJBQXFCLENBQUNtQixHQUFHLENBQUMsWUFBWSxFQUFFLElBQUksQ0FBQztBQUU3QyxNQUFNQyxlQUFlLEdBQUduQixpQkFBUSxDQUFDb0IsS0FBSyxDQUNwQyxpQkFBaUIsRUFDakJyQixxQkFBcUIsQ0FDdEI7QUFBQyxlQUVhb0IsZUFBZTtBQUFBIn0=
